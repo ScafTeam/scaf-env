@@ -1,0 +1,21 @@
+version: "3.9"
+
+networks:
+  node-dev:
+
+services:
+  frontend:
+    image: jimmyhealer/scaf-frontend:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d/defalut.conf:/etc/nginx/conf.d/defalut.conf
+    networks:
+      - node-dev
+  backend:
+    image: jimmyhealer/scaf-backend:latest
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - node-dev
